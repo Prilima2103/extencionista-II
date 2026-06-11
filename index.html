@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EQUIDADE+ — Aprenda sobre igualdade de gênero de um jeito simples e divertido. Projeto educacional para alunos do ensino fundamental.">
+  <title>EQUIDADE+ — Igualdade de Gênero</title>
+  <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style type="text/plain" id="inline-css-removed">
+    :root {
+      --purple: #6B4EFF;
+      --purple-dark: #4f38d4;
+      --purple-soft: #f3f0ff;
+      --purple-mid: #e8e2ff;
+      --green: #1D9E75;
+      --green-dark: #157a5c;
+      --green-soft: #e6f7f0;
+      --coral: #FF8C5A;
+      --pink: #E85DAB;
+      --ink: #1e1b2e;
+      --muted: #64617a;
+      --line: #e6e4ef;
+      --white: #ffffff;
+      --bg: #faf9fd;
+      --red: #e03e3e;
+      --red-soft: #fdeaea;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --shadow: 0 4px 24px rgba(79, 56, 212, 0.08);
+      --shadow-lg: 0 20px 50px rgba(79, 56, 212, 0.14);
+      --header-h: 72px;
+      --font-display: 'Nunito', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-h);
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--green);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(1120px, 100% - 2rem);
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 5rem 0;
+      position: relative;
+    }
+
+    /* Ritmo visual — fundos alternados entre seções */
+    .section--default { background: var(--bg); }
+    .section--white { background: var(--white); }
+    .section--purple-soft {
+      background: linear-gradient(180deg, var(--purple-soft) 0%, var(--bg) 100%);
+    }
+    .section--dark {
+      background: linear-gradient(160deg, #1e1b2e 0%, #3d2d6b 100%);
+      color: var(--white);
+    }
+
+    .section--dark .section__title { color: var(--white); }
+    .section--dark .section__intro { color: rgba(255, 255, 255, .75); }
+    .section--dark .section__label {
+      color: #7dffc8;
+      background: rgba(125, 255, 200, .12);
+    }
+
+    .section__label {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: var(--green-soft);
+      padding: .35rem .85rem;
+      border-radius: 999px;
+      margin-bottom: .75rem;
+    }
+
+    .section__title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .section__intro {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 640px;
+      margin-bottom: 2.5rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: var(--header-h);
+      background: rgba(255, 255, 255, .95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 2px 16px rgba(79, 56, 212, 0.06);
+      z-index: 100;
+      transition: box-shadow .3s;
+    }
+
+    .header.is-scrolled {
+      box-shadow: 0 4px 24px rgba(79, 56, 212, 0.12);
+    }
+
+    .header__inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+    }
+
+    .brand__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--purple), #9b7fff);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: .95rem;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 4px 14px rgba(107, 78, 255, .35);
+      flex-shrink: 0;
+    }
+
+    .brand__name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: var(--purple);
+      line-height: 1.1;
+    }
+
+    .brand__name span { color: var(--green); }
+
+    .nav { display: flex; align-items: center; gap: .25rem; }
+
+    .nav__link {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--muted);
+      padding: .5rem .75rem;
+      border-radius: var(--radius-sm);
+      transition: color .2s, background .2s;
+    }
+
+    .nav__link:hover,
+    .nav__link.active {
+      color: var(--purple);
+      background: var(--purple-soft);
+    }
+
+    .nav__link.active {
+      font-weight: 700;
+      box-shadow: inset 0 -2px 0 var(--purple);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+
+    .nav__cta {
+      margin-left: .5rem;
+      padding: .5rem 1rem !important;
+      background: var(--green) !important;
+      color: var(--white) !important;
+      border-radius: 999px !important;
+      font-weight: 700 !important;
+    }
+
+    .nav__cta:hover {
+      background: var(--green-dark) !important;
+      color: var(--white) !important;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      background: var(--purple-soft);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      height: 2.5px;
+      background: var(--purple);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(7.5px) rotate(45deg);
+    }
+
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-7.5px) rotate(-45deg);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding-top: calc(var(--header-h) + 3rem);
+      padding-bottom: 5rem;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 0%, #ede9ff 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 90% 20%, #e6f7f0 0%, transparent 55%),
+        linear-gradient(160deg, var(--purple-soft) 0%, var(--bg) 55%, var(--green-soft) 100%);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(107, 78, 255, .12) 0%, transparent 70%);
+      top: -150px;
+      right: -100px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(29, 158, 117, .1) 0%, transparent 70%);
+      bottom: -80px;
+      left: -60px;
+      pointer-events: none;
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: .4rem 1rem;
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero__badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .6; transform: scale(1.3); }
+    }
+
+    .hero__title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero__title em {
+      font-style: normal;
+      color: var(--purple);
+    }
+
+    .hero__subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1rem;
+      padding: .9rem 1.75rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+
+    .btn--primary {
+      background: var(--purple);
+      color: var(--white);
+      box-shadow: 0 6px 24px rgba(107, 78, 255, .4);
+    }
+
+    .btn--primary:hover {
+      background: var(--purple-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(107, 78, 255, .45);
+    }
+
+    .btn--green {
+      background: var(--green);
+      color: var(--white);
+      box-shadow: 0 6px 24px rgba(29, 158, 117, .35);
+    }
+
+    .btn--green:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--purple);
+      border: 2px solid var(--purple-mid);
+    }
+
+    .btn--outline:hover {
+      background: var(--purple-soft);
+    }
+
+    .hero__illustration {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero__illustration img {
+      width: min(420px, 100%);
+      height: auto;
+      filter: drop-shadow(0 20px 40px rgba(107, 78, 255, .15));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .hero__card {
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--white);
+      padding: .75rem 1.25rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-lg);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .88rem;
+      color: var(--purple);
+      white-space: nowrap;
+      border: 1px solid var(--line);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ─── DIVISORES DE SEÇÃO (ondas) ─── */
+    .section-divider {
+      display: block;
+      width: 100%;
+      line-height: 0;
+      overflow: hidden;
+    }
+
+    .section-divider svg {
+      display: block;
+      width: 100%;
+      height: 48px;
+    }
+
+    .section-divider--flip { transform: scaleY(-1); }
+
+    /* ─── CARDS (O QUE É) ─── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      box-shadow: var(--shadow);
+      transition: transform .25s, box-shadow .25s;
+      border-top: 4px solid var(--purple);
+    }
+
+    .card:nth-child(2) { border-top-color: var(--green); }
+    .card:nth-child(3) { border-top-color: var(--coral); }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card__icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--purple-soft);
+      color: var(--purple);
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .card__icon svg { width: 26px; height: 26px; }
+    .card:nth-child(2) .card__icon { background: var(--green-soft); color: var(--green-dark); }
+    .card:nth-child(3) .card__icon { background: #fff3ed; color: var(--coral); }
+
+    .card__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--purple);
+      margin-bottom: .6rem;
+    }
+
+    .card__text {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    /* ─── GALERIA DE TEMAS ─── */
+    .themes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .theme-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    .theme-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .theme-card__img {
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .theme-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s;
+    }
+
+    .theme-card:hover .theme-card__img img {
+      transform: scale(1.06);
+    }
+
+    .theme-card__tag {
+      position: absolute;
+      top: .75rem;
+      left: .75rem;
+      background: rgba(255, 255, 255, .95);
+      color: var(--purple);
+      font-family: var(--font-display);
+      font-size: .7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      padding: .3rem .65rem;
+      border-radius: 999px;
+    }
+
+    .theme-card__body {
+      padding: 1.25rem 1.35rem 1.5rem;
+    }
+
+    .theme-card__body p {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ─── ESTEREÓTIPOS ─── */
+    .stereo-layout {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .stereo-aside {
+      position: sticky;
+      top: calc(var(--header-h) + 1.5rem);
+      background: linear-gradient(160deg, var(--purple-soft), var(--green-soft));
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid var(--line);
+    }
+
+    .stereo-aside img {
+      width: min(100%, 260px);
+      margin: 0 auto 1.25rem;
+      filter: drop-shadow(0 12px 30px rgba(107, 78, 255, .15));
+    }
+
+    .stereo-aside p {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--purple);
+      font-size: .95rem;
+      line-height: 1.45;
+    }
+
+    .toggle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .toggle-item {
+      border: 2px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+      transition: border-color .25s, background .25s;
+    }
+
+    .toggle-item--purple.open { border-color: var(--purple); background: var(--purple-soft); }
+    .toggle-item--green.open { border-color: var(--green); background: var(--green-soft); }
+    .toggle-item--coral.open { border-color: var(--coral); background: #fff3ed; }
+    .toggle-item--pink.open { border-color: var(--pink); background: #fde8f4; }
+
+    .toggle-item.open .toggle-item__chevron.toggle-item__chevron--purple {
+      background: var(--purple);
+      color: var(--white);
+    }
+
+    .toggle-item.open .toggle-item__chevron.toggle-item__chevron--green {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .toggle-item.open .toggle-item__chevron.toggle-item__chevron--coral {
+      background: var(--coral);
+      color: var(--white);
+    }
+
+    .toggle-item.open .toggle-item__chevron.toggle-item__chevron--pink {
+      background: var(--pink);
+      color: var(--white);
+    }
+
+    .toggle-item__btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .toggle-item__btn:hover { color: var(--purple); }
+
+    .toggle-item__chevron {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--purple-mid);
+      display: grid;
+      place-items: center;
+      transition: transform .3s, background .3s;
+      font-size: .85rem;
+      color: var(--purple);
+    }
+
+    .toggle-item.open .toggle-item__chevron {
+      transform: rotate(180deg);
+    }
+
+    .toggle-item__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      padding: 0 1.5rem;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.6;
+    }
+
+    .toggle-item.open .toggle-item__answer {
+      max-height: 200px;
+      padding: 0 1.5rem 1.25rem;
+    }
+
+    .toggle-item__answer strong {
+      color: var(--green-dark);
+      display: block;
+      margin-bottom: .25rem;
+      font-family: var(--font-display);
+    }
+
+    /* ─── VIOLÊNCIA ─── */
+    .violence-blocks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .violence-block {
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      border: 1px solid transparent;
+      position: relative;
+    }
+
+    .violence-block__step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1rem;
+      margin-bottom: .85rem;
+    }
+
+    .violence-block--purple .violence-block__step {
+      background: var(--purple);
+      color: var(--white);
+    }
+
+    .violence-block--green .violence-block__step {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .violence-block--coral .violence-block__step {
+      background: var(--coral);
+      color: var(--white);
+    }
+
+    .violence-block--purple {
+      background: var(--purple-soft);
+      border-color: var(--purple-mid);
+    }
+
+    .violence-block--green {
+      background: var(--green-soft);
+      border-color: #b8e8d4;
+    }
+
+    .violence-block--coral {
+      background: #fff3ed;
+      border-color: #ffd4bc;
+    }
+
+    .violence-block__tag {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: .75rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+    }
+
+    .violence-block--purple .violence-block__tag { color: var(--purple); }
+    .violence-block--green .violence-block__tag { color: var(--green-dark); }
+    .violence-block--coral .violence-block__tag { color: #c45a20; }
+
+    .violence-block__text {
+      font-size: .95rem;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    /* ─── QUIZ ─── */
+
+    .quiz__card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      max-width: 720px;
+      margin-inline: auto;
+      box-shadow: var(--shadow);
+    }
+
+    .quiz__progress {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .quiz__progress-bar {
+      flex: 1;
+      height: 8px;
+      background: var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .quiz__progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--purple), var(--green));
+      border-radius: 999px;
+      transition: width .4s ease;
+    }
+
+    .quiz__progress-text {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .quiz__dots {
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--line);
+      transition: background .3s, transform .3s;
+    }
+
+    .quiz__dot.is-current {
+      background: var(--purple);
+      transform: scale(1.3);
+    }
+
+    .quiz__dot.is-done {
+      background: var(--green);
+    }
+
+    .quiz__question-area {
+      transition: opacity .3s, transform .3s;
+    }
+
+    .quiz__question-area.is-transitioning {
+      opacity: 0;
+      transform: translateX(-12px);
+    }
+
+    .quiz__question {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      line-height: 1.35;
+    }
+
+    .quiz__options {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    .quiz__option {
+      display: flex;
+      align-items: flex-start;
+      gap: .85rem;
+      padding: 1rem 1.25rem;
+      background: var(--white);
+      border: 2px solid var(--line);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: .95rem;
+      color: var(--ink);
+      text-align: left;
+      transition: border-color .2s, background .2s;
+      width: 100%;
+    }
+
+    .quiz__option:hover:not(:disabled) {
+      border-color: var(--purple-mid);
+      background: var(--purple-soft);
+    }
+
+    .quiz__option:disabled { cursor: default; }
+
+    .quiz__option.correct {
+      border-color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .quiz__option.wrong {
+      border-color: var(--red);
+      background: var(--red-soft);
+    }
+
+    .quiz__option-letter {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--purple-soft);
+      color: var(--purple);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: .8rem;
+      display: grid;
+      place-items: center;
+    }
+
+    .quiz__option.correct .quiz__option-letter {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .quiz__option.wrong .quiz__option-letter {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .quiz__feedback {
+      margin-top: 1.25rem;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius-sm);
+      font-size: .9rem;
+      line-height: 1.55;
+      display: none;
+    }
+
+    .quiz__feedback.show { display: block; }
+
+    .quiz__feedback--correct {
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border-left: 4px solid var(--green);
+    }
+
+    .quiz__feedback--wrong {
+      background: var(--red-soft);
+      color: #a02020;
+      border-left: 4px solid var(--red);
+    }
+
+    .quiz__next {
+      margin-top: 1.5rem;
+      display: none;
+    }
+
+    .quiz__next.show { display: block; }
+
+    .quiz__result {
+      text-align: center;
+      display: none;
+    }
+
+    .quiz__result.show { display: block; }
+
+    .quiz__result-emoji {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    .quiz__result-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.75rem;
+      color: var(--purple);
+      margin-bottom: .5rem;
+    }
+
+    .quiz__result-score {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 3rem;
+      color: var(--green);
+      margin-bottom: .75rem;
+    }
+
+    .quiz__result-message {
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+    }
+
+    .quiz__question-area.hidden { display: none; }
+
+    .confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 200;
+      overflow: hidden;
+    }
+
+    .confetti__piece {
+      position: absolute;
+      top: -10px;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      animation: confetti-fall 2.5s ease-in forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ─── DENUNCIE ─── */
+
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, .07);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, .12);
+      transition: transform .25s, background .25s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, .11);
+    }
+
+    .contact-card--urgent {
+      border-color: rgba(125, 255, 200, .4);
+      animation: urgent-pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes urgent-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(125, 255, 200, .25); }
+      50% { box-shadow: 0 0 0 8px rgba(125, 255, 200, 0); }
+    }
+
+    .contact-card__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, .1);
+      color: #7dffc8;
+    }
+
+    .contact-card__icon svg { width: 26px; height: 26px; }
+
+    .contact-card__number {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: #7dffc8;
+      margin-bottom: .35rem;
+      line-height: 1;
+    }
+
+    .contact-card__label {
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+
+    .contact-card__desc {
+      font-size: .85rem;
+      color: rgba(255, 255, 255, .7);
+      margin-bottom: 1rem;
+    }
+
+    .contact-card a.contact-card__number {
+      display: block;
+      transition: color .2s;
+    }
+
+    .contact-card a.contact-card__number:hover { color: #b8ffe8; }
+
+    .contact-card__call {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .55rem 1.1rem;
+      background: var(--green);
+      color: var(--white);
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .85rem;
+      transition: background .2s, transform .2s;
+    }
+
+    .contact-card__call:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .encouragement {
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: var(--radius);
+      padding: 1.75rem 2rem;
+      text-align: center;
+      max-width: 640px;
+      margin-inline: auto;
+    }
+
+    .encouragement p {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--white);
+      line-height: 1.5;
+    }
+
+    .encouragement p span { color: #7dffc8; }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: var(--ink);
+      color: rgba(255, 255, 255, .75);
+      padding: 2.5rem 0;
+      text-align: center;
+      font-size: .9rem;
+    }
+
+    .footer__brand {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+
+    .footer__brand span { color: var(--green); }
+
+    .footer__text { margin-bottom: 1rem; }
+
+    .footer__link {
+      color: var(--green);
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color .2s;
+    }
+
+    .footer__link:hover { color: #3dd4a0; }
+
+    .footer__ods {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: 1rem;
+      padding: .35rem .85rem;
+      background: rgba(255, 255, 255, .08);
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .85);
+    }
+
+    .footer__ods span {
+      background: var(--green);
+      color: var(--white);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: .7rem;
+      padding: .15rem .45rem;
+      border-radius: 4px;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero__grid { grid-template-columns: 1fr; text-align: center; }
+      .hero__subtitle { margin-inline: auto; }
+      .hero__actions { justify-content: center; }
+      .hero__illustration { order: -1; }
+      .hero__card { position: static; transform: none; margin-top: 1rem; display: inline-block; }
+      .stereo-layout { grid-template-columns: 1fr; }
+      .stereo-aside { position: static; }
+      .cards-grid,
+      .themes,
+      .violence-blocks,
+      .contact-cards { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; }
+
+      .nav {
+        position: fixed;
+        top: var(--header-h);
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem;
+        border-bottom: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        transform: translateY(-110%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform .3s, opacity .3s;
+      }
+
+      .nav.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .nav__link {
+        padding: .85rem 1rem;
+        font-size: 1rem;
+      }
+
+      .section { padding: 3.5rem 0; }
+      .quiz__card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sprite de ícones SVG -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="icon-handshake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 12h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 14"/><path d="m7 18 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 13 6 6"/></symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="icon-sprout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M12 20V10"/><path d="M12 10C12 4 7 2 7 2s0 6 5 8"/><path d="M12 10c0-6 5-8 5-8s0 6-5 8"/></symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="icon-school" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 2 3 6 3s6-2 6-3v-5"/></symbol>
+    <symbol id="icon-equality" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="icon-sport" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol>
+    <symbol id="icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+    <symbol id="icon-participation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></symbol>
+    <symbol id="icon-work" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+    <symbol id="icon-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+  </svg>
+
+  <!-- HEADER -->
+  <header class="header" id="header" role="banner">
+    <div class="container header__inner">
+      <a href="#inicio" class="brand" aria-label="EQUIDADE+ — Ir para o início">
+        <div class="brand__icon" aria-hidden="true">E+</div>
+        <div class="brand__name">EQUIDADE<span>+</span></div>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mainNav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav" id="mainNav" role="navigation" aria-label="Menu principal">
+        <a href="#inicio" class="nav__link">Início</a>
+        <a href="#oque-e" class="nav__link">O que é?</a>
+        <a href="#estereotipos" class="nav__link">Estereótipos</a>
+        <a href="#violencia" class="nav__link">Violência</a>
+        <a href="#quiz" class="nav__link">Quiz</a>
+        <a href="#denuncie" class="nav__link">Denuncie</a>
+        <a href="#quiz" class="nav__link nav__cta">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="hero__decor" aria-hidden="true">
+        <span class="hero__blob hero__blob--1"></span>
+        <span class="hero__blob hero__blob--2"></span>
+        <span class="hero__blob hero__blob--3"></span>
+      </div>
+      <div class="container hero__grid">
+        <div class="hero__content reveal">
+          <div class="hero__badge">
+            <span class="hero__badge-dot" aria-hidden="true"></span>
+            Projeto educacional · Ensino Fundamental
+          </div>
+          <h1 class="hero__title" id="hero-title">
+            Respeito começa com <em>informação.</em>
+          </h1>
+          <p class="hero__subtitle">
+            Aprenda sobre igualdade de gênero de um jeito simples e divertido.
+          </p>
+          <div class="hero__actions">
+            <a href="#oque-e" class="btn btn--primary" aria-label="Quero aprender — ir para a seção O que é igualdade de gênero">
+              Quero aprender →
+            </a>
+            <a href="#quiz" class="btn btn--outline" aria-label="Fazer o quiz sobre igualdade de gênero">
+              Fazer o quiz
+            </a>
+          </div>
+          <div class="hero__highlights">
+            <span class="hero__pill">📚 Conteúdo educacional</span>
+            <span class="hero__pill">🎯 5 perguntas no quiz</span>
+            <span class="hero__pill">💜 ODS 5</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,24 C360,48 720,0 1080,24 C1260,36 1380,12 1440,24 L1440,48 L0,48 Z" fill="#faf9fd"/>
+      </svg>
+    </div>
+
+    <!-- O QUE É -->
+    <section class="section section--default" id="oque-e" aria-labelledby="oque-title">
+      <div class="container">
+        <span class="section__label reveal">Entenda o básico</span>
+        <h2 class="section__title reveal" id="oque-title">O que é igualdade de gênero?</h2>
+        <p class="section__intro reveal">
+          Igualdade de gênero significa que todas as pessoas — meninas, meninos e pessoas de qualquer identidade — merecem ser tratadas com respeito e ter as mesmas chances na vida.
+        </p>
+
+        <div class="cards-grid">
+          <article class="card reveal">
+            <div class="card__icon" aria-hidden="true"><svg><use href="#icon-handshake"/></svg></div>
+            <h3 class="card__title">Direitos iguais</h3>
+            <p class="card__text">Meninas e meninos merecem as mesmas oportunidades na escola, no trabalho e na vida.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon" aria-hidden="true"><svg><use href="#icon-chat"/></svg></div>
+            <h3 class="card__title">Respeito</h3>
+            <p class="card__text">Toda pessoa merece ser respeitada, independente de ser menina, menino ou de qualquer identidade.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon" aria-hidden="true"><svg><use href="#icon-sprout"/></svg></div>
+            <h3 class="card__title">Futuro justo</h3>
+            <p class="card__text">Um mundo mais igual é melhor para todos — para você, sua família e sua comunidade.</p>
+          </article>
+        </div>
+
+        <div class="themes">
+          <article class="theme-card theme-card--purple reveal">
+            <div class="theme-card__icon-wrap">
+              <div class="theme-card__icon" aria-hidden="true"><svg><use href="#icon-equality"/></svg></div>
+            </div>
+            <div class="theme-card__body">
+              <span class="theme-card__tag">Igualdade</span>
+              <p>Na escola, todos merecem aprender, brincar e crescer com as mesmas oportunidades.</p>
+            </div>
+          </article>
+
+          <article class="theme-card theme-card--green reveal">
+            <div class="theme-card__icon-wrap">
+              <div class="theme-card__icon" aria-hidden="true"><svg><use href="#icon-sport"/></svg></div>
+            </div>
+            <div class="theme-card__body">
+              <span class="theme-card__tag">Esporte</span>
+              <p>Esporte é para todo mundo! Meninas e meninos podem jogar e ser campeões em qualquer modalidade.</p>
+            </div>
+          </article>
+
+          <article class="theme-card theme-card--coral reveal">
+            <div class="theme-card__icon-wrap">
+              <div class="theme-card__icon" aria-hidden="true"><svg><use href="#icon-home"/></svg></div>
+            </div>
+            <div class="theme-card__body">
+              <span class="theme-card__tag">Casa</span>
+              <p>Cuidar da casa e da comida é responsabilidade de todos — não importa o gênero.</p>
+            </div>
+          </article>
+
+          <article class="theme-card theme-card--pink reveal">
+            <div class="theme-card__icon-wrap">
+              <div class="theme-card__icon" aria-hidden="true"><svg><use href="#icon-participation"/></svg></div>
+            </div>
+            <div class="theme-card__body">
+              <span class="theme-card__tag">Participação</span>
+              <p>Todas as vozes importam. Meninas e meninos têm o direito de opinar e ser ouvidos.</p>
+            </div>
+          </article>
+
+          <article class="theme-card theme-card--purple reveal">
+            <div class="theme-card__icon-wrap">
+              <div class="theme-card__icon" aria-hidden="true"><svg><use href="#icon-work"/></svg></div>
+            </div>
+            <div class="theme-card__body">
+              <span class="theme-card__tag">Trabalho</span>
+              <p>Qualquer pessoa pode ser o que quiser — médica, engenheira, professor ou cientista.</p>
+            </div>
+          </article>
+
+          <article class="theme-card theme-card--green reveal">
+            <div class="theme-card__icon-wrap">
+              <div class="theme-card__icon" aria-hidden="true"><svg><use href="#icon-phone"/></svg></div>
+            </div>
+            <div class="theme-card__body">
+              <span class="theme-card__tag">Ajuda</span>
+              <p>Se algo ruim acontecer, peça ajuda. Ligue 180 ou 100 — é gratuito e em sigilo.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider section-divider--flip" aria-hidden="true">
+      <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,24 C360,48 720,0 1080,24 C1260,36 1380,12 1440,24 L1440,48 L0,48 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+
+    <!-- ESTEREÓTIPOS -->
+    <section class="section section--white" id="estereotipos" aria-labelledby="estereotipos-title">
+      <div class="container">
+        <span class="section__label reveal">Desafie ideias prontas</span>
+        <h2 class="section__title reveal" id="estereotipos-title">Estereótipos: o que são e por que prejudicam?</h2>
+        <p class="section__intro reveal">
+          Estereótipo é uma ideia pronta e errada sobre o que meninos ou meninas "devem" fazer ou ser. Essas frases parecem normais, mas limitam as pessoas. Clique em cada uma para descobrir a verdade!
+        </p>
+
+        <div class="stereo-layout">
+          <aside class="stereo-aside reveal">
+            <div class="stereo-aside__icon" aria-hidden="true"><svg><use href="#icon-equality"/></svg></div>
+            <p>Quebrar estereótipos liberta todo mundo — meninas e meninos!</p>
+          </aside>
+
+        <div class="toggle-list" role="list">
+          <div class="toggle-item toggle-item--purple reveal" role="listitem">
+            <button class="toggle-item__btn" aria-expanded="false" aria-controls="toggle-1">
+              <span>"Menino não chora"</span>
+              <span class="toggle-item__chevron toggle-item__chevron--purple" aria-hidden="true">▼</span>
+            </button>
+            <div class="toggle-item__answer" id="toggle-1" role="region">
+              <strong>Verdade:</strong>
+              Chorar é humano. Expressar sentimentos é saudável para qualquer pessoa — menino, menina, adulto ou criança.
+            </div>
+          </div>
+
+          <div class="toggle-item toggle-item--green reveal" role="listitem">
+            <button class="toggle-item__btn" aria-expanded="false" aria-controls="toggle-2">
+              <span>"Futebol é coisa de menino"</span>
+              <span class="toggle-item__chevron toggle-item__chevron--green" aria-hidden="true">▼</span>
+            </button>
+            <div class="toggle-item__answer" id="toggle-2" role="region">
+              <strong>Verdade:</strong>
+              Esporte é para todo mundo! Meninas jogam, competem e são campeãs em futebol e em qualquer modalidade.
+            </div>
+          </div>
+
+          <div class="toggle-item toggle-item--coral reveal" role="listitem">
+            <button class="toggle-item__btn" aria-expanded="false" aria-controls="toggle-3">
+              <span>"Cozinhar é trabalho de mulher"</span>
+              <span class="toggle-item__chevron toggle-item__chevron--coral" aria-hidden="true">▼</span>
+            </button>
+            <div class="toggle-item__answer" id="toggle-3" role="region">
+              <strong>Verdade:</strong>
+              Os melhores chefs do mundo são homens e mulheres. Cuidar da casa e da comida é responsabilidade de todos na família.
+            </div>
+          </div>
+
+          <div class="toggle-item toggle-item--pink reveal" role="listitem">
+            <button class="toggle-item__btn" aria-expanded="false" aria-controls="toggle-4">
+              <span>"Menina deve ser quieta e obediente"</span>
+              <span class="toggle-item__chevron toggle-item__chevron--pink" aria-hidden="true">▼</span>
+            </button>
+            <div class="toggle-item__answer" id="toggle-4" role="region">
+              <strong>Verdade:</strong>
+              Toda pessoa tem direito de se expressar, discordar e ser ouvida. Ser quieta não é regra — ser você mesmo(a) é!
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIOLÊNCIA -->
+    <section class="section section--purple-soft" id="violencia" aria-labelledby="violencia-title">
+      <div class="container">
+        <span class="section__label reveal">Fique atento(a)</span>
+        <h2 class="section__title reveal" id="violencia-title">Isso não é normal, e não está certo.</h2>
+        <p class="section__intro reveal">
+          Às vezes as pessoas fazem coisas ruins com outras por causa do gênero — como xingar, humilhar, bater ou excluir. Isso se chama violência de gênero, e ninguém merece passar por isso. Se isso acontecer com você ou com alguém que você conhece, peça ajuda!
+        </p>
+
+        <div class="violence-blocks">
+          <div class="violence-block violence-block--purple reveal">
+            <span class="violence-block__step" aria-hidden="true">1</span>
+            <p class="violence-block__tag">O que é</p>
+            <p class="violence-block__text">Quando alguém faz mal a outra pessoa por causa do gênero dela — seja por palavras, gestos ou ações.</p>
+          </div>
+          <div class="violence-block violence-block--green reveal">
+            <span class="violence-block__step" aria-hidden="true">2</span>
+            <p class="violence-block__tag">Onde acontece</p>
+            <p class="violence-block__text">Pode ser na escola, em casa, na rua ou na internet. Em qualquer lugar, não é aceitável.</p>
+          </div>
+          <div class="violence-block violence-block--coral reveal">
+            <span class="violence-block__step" aria-hidden="true">3</span>
+            <p class="violence-block__tag">O que fazer</p>
+            <p class="violence-block__text">Conte para um adulto de confiança. Você não está sozinho(a). Pedir ajuda é um ato de coragem!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="section section--white" id="quiz" aria-labelledby="quiz-title">
+      <div class="container">
+        <span class="section__label reveal">Teste seu conhecimento</span>
+        <h2 class="section__title reveal" id="quiz-title">Quiz EQUIDADE+</h2>
+        <p class="section__intro reveal">
+          Responda às 5 perguntas e veja o quanto você já aprendeu sobre igualdade e respeito!
+        </p>
+
+        <div class="quiz__card reveal" id="quizCard">
+          <div class="quiz__question-area" id="quizQuestionArea">
+            <div class="quiz__progress" aria-hidden="true">
+              <div class="quiz__progress-bar">
+                <div class="quiz__progress-fill" id="quizProgressFill" style="width: 0%"></div>
+              </div>
+              <span class="quiz__progress-text" id="quizProgressText">1 / 5</span>
+            </div>
+
+            <div class="quiz__dots" id="quizDots" aria-hidden="true"></div>
+
+            <p class="quiz__question" id="quizQuestion" aria-live="polite"></p>
+
+            <div class="quiz__options" id="quizOptions" role="group" aria-label="Alternativas da pergunta"></div>
+
+            <div class="quiz__feedback" id="quizFeedback" aria-live="assertive"></div>
+
+            <div class="quiz__next" id="quizNext">
+              <button class="btn btn--primary" id="quizNextBtn" type="button">Próxima pergunta →</button>
+            </div>
+          </div>
+
+          <div class="quiz__result" id="quizResult" aria-live="polite">
+            <div class="quiz__result-emoji" id="quizResultEmoji"></div>
+            <h3 class="quiz__result-title" id="quizResultTitle"></h3>
+            <p class="quiz__result-score" id="quizResultScore"></p>
+            <p class="quiz__result-message" id="quizResultMessage"></p>
+            <button class="btn btn--green" id="quizRestartBtn" type="button" aria-label="Fazer o quiz de novo">Fazer o quiz de novo</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,24 C360,48 720,0 1080,24 C1260,36 1380,12 1440,24 L1440,48 L0,48 Z" fill="#1e1b2e"/>
+      </svg>
+    </div>
+
+    <!-- DENUNCIE -->
+    <section class="section section--dark" id="denuncie" aria-labelledby="denuncie-title">
+      <div class="container">
+        <span class="section__label reveal">Você não está só</span>
+        <h2 class="section__title reveal" id="denuncie-title">Precisa de ajuda? Você não está só.</h2>
+        <p class="section__intro reveal">
+          Se algo ruim está acontecendo com você, não guarde segredo. Existem pessoas e serviços prontos para ajudar — de graça e em sigilo.
+        </p>
+
+        <div class="contact-cards">
+          <article class="contact-card contact-card--urgent reveal">
+            <div class="contact-card__icon" aria-hidden="true"><svg><use href="#icon-phone"/></svg></div>
+            <a href="tel:180" class="contact-card__number" aria-label="Ligar para o 180 — Central de Atendimento à Mulher">180</a>
+            <p class="contact-card__label">Central de Atendimento à Mulher</p>
+            <p class="contact-card__desc">Ligação gratuita, 24 horas. Atendimento em sigilo para mulheres em situação de violência.</p>
+            <a href="tel:180" class="contact-card__call" aria-label="Ligar agora para o 180">Ligar agora →</a>
+          </article>
+
+          <article class="contact-card reveal">
+            <div class="contact-card__icon" aria-hidden="true"><svg><use href="#icon-shield"/></svg></div>
+            <a href="tel:100" class="contact-card__number" aria-label="Ligar para o Disque 100 — Direitos Humanos">100</a>
+            <p class="contact-card__label">Disque Direitos Humanos</p>
+            <p class="contact-card__desc">Denúncias de violações de direitos humanos. Funciona todos os dias, 24 horas.</p>
+            <a href="tel:100" class="contact-card__call" aria-label="Ligar agora para o 100">Ligar agora →</a>
+          </article>
+
+          <article class="contact-card reveal">
+            <div class="contact-card__icon" aria-hidden="true"><svg><use href="#icon-school"/></svg></div>
+            <p class="contact-card__number" style="font-size: 1.5rem;">Sua escola</p>
+            <p class="contact-card__label">Fale com um adulto de confiança</p>
+            <p class="contact-card__desc">Professores, coordenadores e funcionários da escola estão ali para te proteger e ajudar.</p>
+          </article>
+        </div>
+
+        <div class="encouragement reveal">
+          <p>💜 <span>Pedir ajuda é corajoso.</span> Você merece ser respeitado(a) e cuidado(a). Não tenha medo de contar para alguém!</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p class="footer__brand">EQUIDADE<span>+</span></p>
+      <p class="footer__text">Projeto EQUIDADE+ — Atividade Extensionista II — ADS/UNINTER</p>
+      <a href="https://github.com/prilima2103/Extensionista" class="footer__link" target="_blank" rel="noopener noreferrer" aria-label="Ver repositório no GitHub (abre em nova aba)">
+        Ver no GitHub →
+      </a>
+      <p class="footer__ods"><span>ODS 5</span> Igualdade de Gênero · UNINTER</p>
+    </div>
+  </footer>
+
+  <script src="js/data/quiz-data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/quiz.js"></script>
+  <script type="text/plain" id="inline-js-removed">
+    const navToggle = document.getElementById('navToggle');
+    const mainNav = document.getElementById('mainNav');
+    const navLinks = document.querySelectorAll('.nav__link');
+
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      navToggle.setAttribute('aria-label', expanded ? 'Abrir menu de navegação' : 'Fechar menu de navegação');
+      mainNav.classList.toggle('open');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Abrir menu de navegação');
+      });
+    });
+
+    /* ─── SCROLL SPY ─── */
+    const sections = document.querySelectorAll('section[id]');
+
+    function updateActiveNav() {
+      const scrollY = window.scrollY + 100;
+      sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        const id = section.getAttribute('id');
+        const link = document.querySelector(`.nav__link[href="#${id}"]`);
+        if (link && scrollY >= top && scrollY < top + height) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+    /* ─── HEADER SCROLL SHADOW ─── */
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    /* ─── TOGGLES ESTEREÓTIPOS ─── */
+    document.querySelectorAll('.toggle-item__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.toggle-item');
+        const isOpen = item.classList.contains('open');
+
+        document.querySelectorAll('.toggle-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.toggle-item__btn').setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    /* ─── REVEAL ON SCROLL ─── */
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    /* ─── QUIZ ─── */
+    const QUIZ_DATA = [
+      {
+        question: 'O que é igualdade de gênero?',
+        options: [
+          'Meninos são melhores que meninas',
+          'Todas as pessoas têm os mesmos direitos e oportunidades',
+          'Só as meninas precisam de proteção'
+        ],
+        correct: 1,
+        explanation: 'Igualdade de gênero significa que meninas, meninos e todas as pessoas merecem os mesmos direitos e oportunidades!'
+      },
+      {
+        question: 'O que é um estereótipo?',
+        options: [
+          'Uma ideia pronta e errada sobre o que meninos ou meninas "devem" fazer',
+          'Um tipo de esporte',
+          'Uma matéria da escola'
+        ],
+        correct: 0,
+        explanation: 'Estereótipo é quando as pessoas acham que algo é "só para meninos" ou "só para meninas" — mas isso limita todo mundo!'
+      },
+      {
+        question: 'Meninos podem chorar e demonstrar sentimentos?',
+        options: [
+          'Não, chorar é fraqueza',
+          'Sim, expressar sentimentos é saudável para qualquer pessoa',
+          'Só quando ninguém está olhando'
+        ],
+        correct: 1,
+        explanation: 'Chorar e expressar sentimentos é humano e saudável — não importa se você é menino ou menina!'
+      },
+      {
+        question: 'O que é violência de gênero?',
+        options: [
+          'Quando alguém faz mal a outra pessoa por causa do gênero dela',
+          'Quando duas pessoas discutem sobre futebol',
+          'Quando alguém tira nota baixa na prova'
+        ],
+        correct: 0,
+        explanation: 'Violência de gênero é quando alguém machuca outra pessoa por palavras, gestos ou ações por causa do gênero. Isso é errado e deve ser denunciado!'
+      },
+      {
+        question: 'Se algo ruim está acontecendo com você, o que fazer?',
+        options: [
+          'Guardar segredo e não contar para ninguém',
+          'Contar para um adulto de confiança ou ligar para o 180 ou 100',
+          'Achar que é culpa sua'
+        ],
+        correct: 1,
+        explanation: 'Pedir ajuda é corajoso! Fale com um adulto de confiança, um professor ou ligue para o 180 ou 100. Você não está sozinho(a)!'
+      }
+    ];
+
+    const MOTIVATIONAL_MESSAGES = [
+      { min: 0, max: 1, emoji: '🌱', title: 'Continue aprendendo!', message: 'Todo mundo começa em algum lugar. Releia as seções do site e tente de novo — você vai arrasar!' },
+      { min: 2, max: 3, emoji: '⭐', title: 'Muito bom!', message: 'Você já entende bastante sobre igualdade de gênero. Continue assim e compartilhe o que aprendeu com seus amigos!' },
+      { min: 4, max: 4, emoji: '🏆', title: 'Quase lá!', message: 'Faltou pouco para a nota máxima! Você está no caminho certo para ser um agente de mudança na sua escola.' },
+      { min: 5, max: 5, emoji: '🎉', title: 'Incrível!', message: 'Você acertou tudo! Agora você sabe muito sobre respeito e igualdade. Espalhe essa mensagem na sua escola e comunidade!' }
+    ];
+
+    const quizState = {
+      currentIndex: 0,
+      score: 0,
+      answered: false
+    };
+
+    const quizQuestion = document.getElementById('quizQuestion');
+    const quizOptions = document.getElementById('quizOptions');
+    const quizFeedback = document.getElementById('quizFeedback');
+    const quizNext = document.getElementById('quizNext');
+    const quizNextBtn = document.getElementById('quizNextBtn');
+    const quizProgressFill = document.getElementById('quizProgressFill');
+    const quizProgressText = document.getElementById('quizProgressText');
+    const quizQuestionArea = document.getElementById('quizQuestionArea');
+    const quizResult = document.getElementById('quizResult');
+    const quizResultEmoji = document.getElementById('quizResultEmoji');
+    const quizResultTitle = document.getElementById('quizResultTitle');
+    const quizResultScore = document.getElementById('quizResultScore');
+    const quizResultMessage = document.getElementById('quizResultMessage');
+    const quizRestartBtn = document.getElementById('quizRestartBtn');
+    const quizDots = document.getElementById('quizDots');
+
+    const LETTERS = ['A', 'B', 'C'];
+    const CONFETTI_COLORS = ['#6B4EFF', '#1D9E75', '#FF8C5A', '#E85DAB', '#9b7fff'];
+
+    function renderDots() {
+      quizDots.innerHTML = '';
+      QUIZ_DATA.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.className = 'quiz__dot';
+        if (i < quizState.currentIndex) dot.classList.add('is-done');
+        if (i === quizState.currentIndex) dot.classList.add('is-current');
+        quizDots.appendChild(dot);
+      });
+    }
+
+    function launchConfetti() {
+      const container = document.createElement('div');
+      container.className = 'confetti';
+      document.body.appendChild(container);
+
+      for (let i = 0; i < 50; i++) {
+        const piece = document.createElement('span');
+        piece.className = 'confetti__piece';
+        piece.style.left = `${Math.random() * 100}%`;
+        piece.style.background = CONFETTI_COLORS[i % CONFETTI_COLORS.length];
+        piece.style.animationDelay = `${Math.random() * .8}s`;
+        piece.style.animationDuration = `${2 + Math.random() * 1.5}s`;
+        container.appendChild(piece);
+      }
+
+      setTimeout(() => container.remove(), 4000);
+    }
+
+    function renderQuestion() {
+      const q = QUIZ_DATA[quizState.currentIndex];
+      quizState.answered = false;
+
+      quizQuestion.textContent = q.question;
+      quizOptions.innerHTML = '';
+
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'quiz__option';
+        btn.setAttribute('aria-label', `Alternativa ${LETTERS[i]}: ${opt}`);
+        btn.innerHTML = `<span class="quiz__option-letter" aria-hidden="true">${LETTERS[i]}</span><span>${opt}</span>`;
+        btn.addEventListener('click', () => selectAnswer(i));
+        quizOptions.appendChild(btn);
+      });
+
+      quizFeedback.className = 'quiz__feedback';
+      quizFeedback.textContent = '';
+      quizNext.classList.remove('show');
+
+      const progress = ((quizState.currentIndex) / QUIZ_DATA.length) * 100;
+      quizProgressFill.style.width = `${progress}%`;
+      quizProgressText.textContent = `${quizState.currentIndex + 1} / ${QUIZ_DATA.length}`;
+      renderDots();
+    }
+
+    function selectAnswer(selected) {
+      if (quizState.answered) return;
+      quizState.answered = true;
+
+      const q = QUIZ_DATA[quizState.currentIndex];
+      const isCorrect = selected === q.correct;
+      const buttons = quizOptions.querySelectorAll('.quiz__option');
+
+      buttons.forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === q.correct) btn.classList.add('correct');
+        else if (i === selected) btn.classList.add('wrong');
+      });
+
+      if (isCorrect) quizState.score++;
+
+      quizFeedback.className = `quiz__feedback show ${isCorrect ? 'quiz__feedback--correct' : 'quiz__feedback--wrong'}`;
+      quizFeedback.textContent = (isCorrect ? '✅ Correto! ' : '❌ Não foi dessa vez. ') + q.explanation;
+
+      const isLast = quizState.currentIndex === QUIZ_DATA.length - 1;
+      quizNextBtn.textContent = isLast ? 'Ver resultado →' : 'Próxima pergunta →';
+      quizNext.classList.add('show');
+
+      quizProgressFill.style.width = `${((quizState.currentIndex + 1) / QUIZ_DATA.length) * 100}%`;
+    }
+
+    function showResult() {
+      quizQuestionArea.classList.add('hidden');
+      quizResult.classList.add('show');
+
+      const msg = MOTIVATIONAL_MESSAGES.find(m => quizState.score >= m.min && quizState.score <= m.max);
+
+      quizResultEmoji.textContent = msg.emoji;
+      quizResultTitle.textContent = msg.title;
+      quizResultScore.textContent = `${quizState.score} / ${QUIZ_DATA.length}`;
+      quizResultMessage.textContent = msg.message;
+
+      if (quizState.score === QUIZ_DATA.length) launchConfetti();
+    }
+
+    function restartQuiz() {
+      quizState.currentIndex = 0;
+      quizState.score = 0;
+      quizState.answered = false;
+
+      quizQuestionArea.classList.remove('hidden');
+      quizResult.classList.remove('show');
+      renderQuestion();
+    }
+
+    quizNextBtn.addEventListener('click', () => {
+      if (quizState.currentIndex < QUIZ_DATA.length - 1) {
+        quizQuestionArea.classList.add('is-transitioning');
+        setTimeout(() => {
+          quizState.currentIndex++;
+          renderQuestion();
+          quizQuestionArea.classList.remove('is-transitioning');
+        }, 300);
+      } else {
+        showResult();
+      }
+    });
+
+    quizRestartBtn.addEventListener('click', restartQuiz);
+
+    renderQuestion();
+  </script>
+</body>
+</html>
